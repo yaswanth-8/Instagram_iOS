@@ -14,7 +14,6 @@ enum ContentView {
 
 struct RootView: View {
     @State private var selectedView: ContentView = .home
-
     var body: some View {
         VStack {
             switch selectedView {

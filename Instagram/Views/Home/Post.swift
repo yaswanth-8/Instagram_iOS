@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct Post: View {
+struct PostView: View {
+    var post : Post = Post(id: "1", image: "https://wallpapercave.com/dwp2x/7chNglp.jpg", description: "Beautiful place to visit")
     var body: some View {
         VStack {
             HStack{
@@ -25,9 +26,23 @@ struct Post: View {
             } //: Header HStack
             .padding(.horizontal)
             .padding(.vertical,5)
-            Image("spider-verse")
-                .resizable()
-                .scaledToFit()
+            AsyncImage(url: URL(string: post.image)) { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                        .frame(width: 200, height: 300)
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFit()
+                case .failure:
+                    // Handle error
+                    Text("Failed to load image")
+                @unknown default:
+                    // Handle unknown case
+                    Text("Unknown state")
+                }
+            }
             HStack{
                 HStack(spacing:15){
                     Image("heart-fill")
@@ -58,7 +73,7 @@ struct Post: View {
                 Text("Yaswanth")
                     .font(.caption)
                     .fontWeight(.semibold) +
-                Text(" Thanks for downloading this freebie ❤️ #statue #art #sculpture")
+                Text(" "+post.description)
                     .font(.caption)
                 Spacer()
             }
@@ -75,6 +90,6 @@ struct Post: View {
 }
 
 #Preview {
-    Post()
+    PostView()
         .previewLayout(.sizeThatFits)
 }

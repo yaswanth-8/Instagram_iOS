@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct Posts: View {
-    
     struct ImageModel: Identifiable {
         var id: Int
         var image: Image

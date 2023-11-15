@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var model = ApiClient()
+    init(){
+        model.fetchPosts()
+    }
     var body: some View {
         Header()
         ScrollView(.vertical){
             Stories()
             Divider()
-            Post()
-            Post()
+            ForEach(model.posts){ post in
+                PostView(post: post)
+            }
         }
     }
 }

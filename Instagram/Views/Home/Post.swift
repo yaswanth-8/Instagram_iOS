@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PostView: View {
-    var post : Post = Post(id: "1", image: "https://wallpapercave.com/dwp2x/7chNglp.jpg", description: "Beautiful place to visit")
+    var post : Post = Post(id: "1", image: "https://wallpapercave.com/dwp2x/7chNglp.jpg", description: "Beautiful place to visit", location: "Hawaii")
     var body: some View {
         VStack {
             HStack{
@@ -18,7 +18,7 @@ struct PostView: View {
                 VStack(alignment: .leading){
                     Text("Yaswanth")
                         .font(.system(size: 13.5))
-                    Text("Florence, Italy")
+                    Text(post.location)
                         .font(.system(size: 11.5))
                 }
                 Spacer()

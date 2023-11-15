@@ -14,7 +14,7 @@ struct HomeView: View {
     }
     var body: some View {
         Header()
-        ScrollView(.vertical){
+        ScrollView(.vertical, showsIndicators: false){
             Stories()
             Divider()
             ForEach(model.posts){ post in

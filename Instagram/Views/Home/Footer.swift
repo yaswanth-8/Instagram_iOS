@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Footer: View {
     @Binding var selectedView: ContentView
-
+    @ObservedObject var model = ApiClient()
     var body: some View {
         HStack {
             Button(action: {
@@ -24,9 +24,14 @@ struct Footer: View {
                 .resizable()
                 .frame(width: 22, height: 22)
             Spacer()
-            Image("add")
-                .resizable()
-                .frame(width: 22, height: 22)
+            Button(action: {
+                model.addPost(post: Post(id: "", image: "https://cdn.pixabay.com/photo/2018/05/07/22/08/opera-house-3381786_640.jpg", description: "Sydney, capital of New South Wales and one of Australia's largest cities, is best known for its harbourfront Sydney Opera House, with a distinctive sail-like design.", location: "Sydney, Australia"))
+            }){
+                Image("add")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+            }
+            
             Spacer()
             Image("reel")
                 .resizable()
